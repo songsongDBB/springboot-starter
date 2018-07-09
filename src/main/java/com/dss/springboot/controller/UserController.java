@@ -16,9 +16,9 @@ public class UserController {
 	public JsonResultUtil getUserInfo() {
 		
 		User user = new User();
-		user.setName("duanss");
+		user.setName("duanssRestart");
 		user.setBirthday(new Date());
-		user.setPassword("123");
+		user.setPassword("123Restart");
 		user.setAge(24);
 		user.setDesc("hello springboot");
 		
