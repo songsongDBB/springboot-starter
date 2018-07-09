@@ -57,6 +57,14 @@
 			<!-- optional=true, 依赖不会传递, 该项目依赖devtools; 之后如果有项目依赖该boot项目的项目如果想要使用devtools, 需要重新引入 -->
 			<optional>true</optional>
 		</dependency>
+		
+		<!-- 要读取私有文件中的配置的值，必须引入该依赖 -->
+		<dependency>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-configuration-processor</artifactId>
+			<optional>true</optional>
+		</dependency>
+		
 	</dependencies>
 
 	<build>
