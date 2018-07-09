@@ -1,0 +1,2 @@
+1、添加devtools热部署所需要的依赖----pom.xml
+2、在application.properties配置文件中打开热部署功能以及配置需要重启的目录
