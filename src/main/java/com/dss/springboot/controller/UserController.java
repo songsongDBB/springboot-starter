@@ -20,7 +20,7 @@ public class UserController {
 		user.setBirthday(new Date());
 		user.setPassword("123");
 		user.setAge(24);
-		user.setDesc(null);
+		user.setDesc("hello springboot");
 		
 		return JsonResultUtil.ok(user);
 	}

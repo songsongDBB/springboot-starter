@@ -2,12 +2,23 @@ package com.dss.springboot.pojo;
 
 import java.util.Date;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
+import com.fasterxml.jackson.annotation.JsonInclude;
+import com.fasterxml.jackson.annotation.JsonInclude.Include;
+	
+//@JsonIgnoreProperties({"password","age"})		//表示将类里面不需要返回的属性列在这里
 public class User {
 
 	private String name;
+	
+	//@JsonIgnore			//表示这个属性值不需要返回给前台
 	private String password;
 	private Integer age;
+	
+	@JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss", locale = "zh", timezone = "GMT+8")			//表示将日期格式转换成固定的形式输出
 	private Date birthday;
+	
+	@JsonInclude(Include.NON_NULL)				//表示当这个值为null时，不返回
 	private String desc;
 
 	public String getName() {
