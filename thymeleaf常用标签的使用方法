@@ -1,0 +1,35 @@
+1、基本使用方式：
+	th:text:	替换标签中的文本值，如div,h1,p...
+	th:id:	将便签的id的属性值设为该值
+	th:name:	将便签的name属性值设为该值
+	th:value:	将便签的value属性值设为该值
+	${#dates.format(user.birthday, 'yyyy-MM-dd')}:	日期装换格式
+	
+	
+	th:object：	可以在div,table.li等标签中加上这个用来接收一个对象，在下面直接用*{对象的属性名}来显示值
+	
+	th:field=*{name}:	会自动转换成  th:id=name; th:name=name; th:value=name的值（这个必须和th:objce连着一起使用）
+	
+	th:text和th:utext的区别：
+		th:text会将值原封不动的代替标签的文本值
+		th:utext如果发现值里面有html标签，它会把便签转换成网页的形式
+		
+	th:href="@{http://www.imooc.com} ： 网址标签	(即所有的地址形式都是这样写，包括form标签里面的action)
+	
+	<script th:src="@{/static/js/test.js}"></script>:	引入外部静态资源（要先在配置文件中配置静态资源的路径）
+	
+	
+	th:if="${user.age} == 18		gt(大于)	lt(小于)	ge(大于等于)	le(小于等于)
+	
+	
+	<option th:selected="${user.name eq 'dss'}">dss</option>	select、checkbox等等中的th:selected标签
+	
+	th:each标签，相当于c:foreach，具体看test.html中的table
+	
+	th:switch:	具体看test.html
+	
+	
+i18n资源文件的使用：
+	1、在application.properties配置文件中配置资源文件的路径和文件名
+	2、只能在thymeleaf中进行读取
+	
