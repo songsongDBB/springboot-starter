@@ -43,7 +43,7 @@ public class ExceptionHandler {
 	 * @return
 	 * @throws Exception
 	 */
-	@org.springframework.web.bind.annotation.ExceptionHandler(value = Exception.class)
+	//@org.springframework.web.bind.annotation.ExceptionHandler(value = Exception.class)
 	public JsonResultUtil ajaxErrorHandler(HttpServletRequest reqest, Exception e) throws Exception{
 		
 		//在控制台打印异常
@@ -51,6 +51,40 @@ public class ExceptionHandler {
 		
 		return JsonResultUtil.errorException(e.getMessage());
 		
+	}
+	
+	/**
+	 * 这个方法整合web请求和ajax请求，通过不同的请求，进行不同的异常处理
+	 * @param request
+	 * @param e
+	 * @return
+	 * @throws Exception
+	 */
+	@org.springframework.web.bind.annotation.ExceptionHandler(value = Exception.class)
+	public Object ProcessExceptionHandler(HttpServletRequest request, Exception e) throws Exception{
+		
+		e.printStackTrace();
+		
+		if(isAjax(request)) {
+			return JsonResultUtil.errorException(e.getMessage());
+		}else {
+			ModelAndView mv = new ModelAndView();
+			mv.addObject("exception", e);
+			mv.addObject("url", request.getRequestURL());
+			mv.setViewName(ERROR_VIEW);
+			
+			return mv;
+		}
+		
+	}
+	
+	/**
+	 * 判断请求是否是ajax请求
+	 * @param request
+	 * @return
+	 */
+	public static boolean isAjax(HttpServletRequest request) {
+		return  (request.getHeader("X-Requested-With") != null  && "XMLHttpRequest".equals( request.getHeader("X-Requested-With").toString()) );
 	}
 	
 }
