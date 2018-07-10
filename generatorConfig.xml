@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE generatorConfiguration
+        PUBLIC "-//mybatis.org//DTD MyBatis Generator Configuration 1.0//EN"
+        "http://mybatis.org/dtd/mybatis-generator-config_1_0.dtd">
+
+<!-- 逆向生成：通过表名，逆向生成实体类，service层接口，dao层接口，mybatis的xml文件 -->
+<generatorConfiguration>
+	<context id="MysqlContext" targetRuntime="MyBatis3Simple"
+		defaultModelType="flat">
+		<property name="beginningDelimiter" value="`" />
+		<property name="endingDelimiter" value="`" />
+
+		<plugin type="tk.mybatis.mapper.generator.MapperPlugin">
+			<property name="mappers" value="com.dss.springboot.utils.MyMapper" />
+		</plugin>
+
+		<jdbcConnection driverClass="com.mysql.jdbc.Driver"
+			connectionURL="jdbc:mysql://localhost:3306/springboot" userId="root"
+			password="123456">
+		</jdbcConnection>
+
+		<!-- 对于生成的实体类所在包 -->
+		<javaModelGenerator targetPackage="com.dss.springboot.pojo"
+			targetProject="src/main/java" />
+
+		<!-- 对于生成的mapper所在目录 -->
+		<sqlMapGenerator targetPackage="mapper"
+			targetProject="src/main/resources" />
+
+		<!-- 配置mapper对应的java映射（即相当于dao层接口） -->
+		<javaClientGenerator
+			targetPackage="com.dss.springboot.mapper" targetProject="src/main/java"
+			type="XMLMAPPER" />
+
+
+		<table tableName="girl"></table>
+
+	</context>
+</generatorConfiguration>
