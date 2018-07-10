@@ -2,6 +2,9 @@ package com.dss.springboot.controller;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.ResponseBody;
+
+import com.dss.springboot.utils.JsonResultUtil;
 
 @Controller
 @RequestMapping(value = "/err")
@@ -18,6 +21,22 @@ public class ErrorController {
 		
 		return "thymeleaf/error";
 		
+	}
+	
+	@RequestMapping("/ajaxerror")
+	public String ajaxerror() {
+		
+		return "thymeleaf/ajaxerror";
+		
+	}
+	
+	@RequestMapping(value = "/getAjaxerror")
+	@ResponseBody
+	public JsonResultUtil getAjaxerror() {
+		
+		int a = 1 / 0;
+		
+		return JsonResultUtil.ok();
 	}
 	
 }
