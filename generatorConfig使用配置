@@ -1,5 +1,10 @@
+一：generatorConfig的使用
 1、引入相关的依赖，在pom.xml中
 2、springboot整合mybatis后，要实现热部署，需要在appication.properties中进行相关的配置
 3、在application.properties中对mybatis、Mapper、PageHelper进行基本配置
 4、根据对应的情况，修改generatorConfig.xml文件
 5、运行GeneratorDispaly中的main方法，即可逆向生成文件
+
+
+二：springboot整合mybatis进行select,update,insert,delete操作
+1、在SpringbootStarterApplication中加入@MapperScan(basePackages = "com.dss.springboot.mapper")注解

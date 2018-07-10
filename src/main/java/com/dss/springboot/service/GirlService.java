@@ -1,12 +1,12 @@
-package com.dss.springboot.mapper;
+package com.dss.springboot.service;
 
 import java.util.List;
 
 import com.dss.springboot.pojo.Girl;
 
-public interface GirlMapper{
-	
-	void saveGirl(Girl girl);
+public interface GirlService {
+
+	void saveGirl(Girl girl)throws Exception;
 	
 	void updateGirl(Girl girl);
 	
@@ -15,5 +15,4 @@ public interface GirlMapper{
 	List<Girl> selectAllGilr();
 	
 	void deleteGirlById(Girl girl);
-	
 }

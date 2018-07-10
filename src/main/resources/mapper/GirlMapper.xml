@@ -10,4 +10,25 @@
     <result column="cupSize" property="cupsize" jdbcType="VARCHAR" />
     <result column="amount" property="amount" jdbcType="REAL" />
   </resultMap>
+  
+  <insert id="saveGirl" parameterType="com.dss.springboot.pojo.Girl">
+  	insert into girl(id,age,cupSize,amount) values(#{id}, #{age}, #{cupsize}, #{amount})
+  </insert>
+  
+  <update id="updateGirl" parameterType="com.dss.springboot.pojo.Girl">
+  	update girl set age = #{age}, cupSize = #{cupsize}, amount = #{amount} where id = #{id}
+  </update>
+  
+  <select id="selectGirlById" parameterType="com.dss.springboot.pojo.Girl" resultType="com.dss.springboot.pojo.Girl">
+  	select * from girl where id = #{id}
+  </select>
+  
+  <select id="selectAllGilr" resultType="com.dss.springboot.pojo.Girl">
+  	select * from girl
+  </select>
+  
+  <delete id="deleteGirlById" parameterType="com.dss.springboot.pojo.Girl">
+  	delete from girl where id = #{id}
+  </delete>
+  
 </mapper>
