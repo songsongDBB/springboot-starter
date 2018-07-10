@@ -1,0 +1,2 @@
+1、自定义一个ExceptionHandler，表示在程序运行出现异常时，会自动进入到这个类里面，这个类用@RestControllerAdvice或@ControllerAdvice注解
+2、定义一个方法，使用@ExceptionHandler(value = Exception.class)注解，表示出现异常会进入执行这个方法
