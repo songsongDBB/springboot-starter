@@ -22,7 +22,7 @@ public class FreemarkerController {
 	@RequestMapping(value = "/index")
 	public String inddex(ModelMap map) {
 		map.addAttribute("resource", resource);			//这里是为了在页面使用$符号进行取值
-		return "freemarker/index";						//这里默认页面文件都是在templates里面，所以可以不用写这个
+		return "freemarker/index";						//这里页面文件目录已经在配置文件里面说明都是在templates里面，所以可以不用写这个
 	}
 	
 	@RequestMapping("center")
