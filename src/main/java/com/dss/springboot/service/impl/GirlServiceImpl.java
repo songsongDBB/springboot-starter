@@ -79,4 +79,24 @@ public class GirlServiceImpl implements GirlService {
 		return pageInfo;
 	}
 
+	/**
+	 * 整合事物
+	 */
+	@Override
+	public void checkTran() throws Exception {
+
+		Girl girl = new Girl();
+		girl.setId(19);
+		girl.setAge(120);
+		girl.setAmount((float) 500);
+		girl.setCupsize("FF");
+		
+		girlMapper.saveGirl(girl);
+		
+		int a = 1/0;
+		
+		girlMapper.deleteGirlById(girl);
+		
+	}
+
 }

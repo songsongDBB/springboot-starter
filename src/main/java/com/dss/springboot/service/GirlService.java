@@ -18,4 +18,6 @@ public interface GirlService {
 	void deleteGirlById(Girl girl)throws Exception;
 
 	PageInfo<Girl> queryGirlListPaged(Girl girl, Integer page, int pageSize)throws Exception;
+
+	void checkTran()throws Exception;
 }

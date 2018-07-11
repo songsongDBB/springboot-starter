@@ -4,6 +4,8 @@ import java.util.List;
 
 import javax.annotation.Resource;
 
+import org.springframework.transaction.annotation.Propagation;
+import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
@@ -26,6 +28,7 @@ public class GirlController {
 	 * @throws Exception
 	 */
 	@RequestMapping(value = "/saveGirl")
+	@Transactional(propagation = Propagation.REQUIRED)
 	public JsonResultUtil saveGirl() throws Exception{
 		
 		Girl girl = new Girl();
@@ -45,6 +48,7 @@ public class GirlController {
 	 * @throws Exception
 	 */
 	@RequestMapping(value = "/updateGirl")
+	@Transactional(propagation = Propagation.REQUIRED)
 	public JsonResultUtil updateGirl() throws Exception{
 		
 		Girl girl = new Girl();
@@ -64,6 +68,7 @@ public class GirlController {
 	 * @throws Exception
 	 */
 	@RequestMapping(value = "/deleteGirl")
+	@Transactional(propagation = Propagation.REQUIRED)
 	public JsonResultUtil deleteGirl() throws Exception{
 		
 		Girl girl = new Girl();
@@ -80,6 +85,7 @@ public class GirlController {
 	 * @throws Exception
 	 */
 	@RequestMapping(value = "/selectGirlById")
+	@Transactional(propagation = Propagation.SUPPORTS)
 	public JsonResultUtil selectGirlById() throws Exception{
 		
 		Girl girl = new Girl();
@@ -96,6 +102,7 @@ public class GirlController {
 	 * @throws Exception
 	 */
 	@RequestMapping(value = "/selectAllGirl")
+	@Transactional(propagation = Propagation.SUPPORTS)
 	public JsonResultUtil selectAllGirl() throws Exception{
 		
 		List<Girl> list = girlService.selectAllGilr();
@@ -110,6 +117,13 @@ public class GirlController {
 	 * @return
 	 */
 	@RequestMapping(value = "/queryGirlListPaged")
+	/**
+	 * Propagation.SUPPORTS	使用与select操作
+	 * @param page
+	 * @return
+	 * @throws Exception
+	 */
+	@Transactional(propagation = Propagation.SUPPORTS)
 	public JsonResultUtil queryGirlListPaged(@RequestParam(value = "page", required = false, defaultValue = "1") Integer page) throws Exception{
 		
 		int pageSize = 5;
@@ -123,6 +137,26 @@ public class GirlController {
 		PageInfo<Girl> girlList = girlService.queryGirlListPaged(girl, page, pageSize);
 		
 		return JsonResultUtil.ok(girlList);
+	}
+	
+	/**
+	 * 整合事物
+	 * @return
+	 * @throws Exception
+	 */
+	@RequestMapping(value = "/checkTran")
+	/**
+	 * propagation = Propagation.REQUIRED	使用与update,insert,delete操作
+	 * @return
+	 * @throws Exception
+	 */
+	@Transactional(propagation = Propagation.REQUIRED)
+	public JsonResultUtil checkTran() throws Exception {
+		
+		girlService.checkTran();
+		
+		return JsonResultUtil.ok();
+		
 	}
 	
 }
