@@ -5,11 +5,13 @@ import java.util.List;
 import javax.annotation.Resource;
 
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.dss.springboot.pojo.Girl;
 import com.dss.springboot.service.GirlService;
 import com.dss.springboot.utils.JsonResultUtil;
+import com.github.pagehelper.PageInfo;
 
 @RestController
 @RequestMapping(value = "/girl")
@@ -101,5 +103,26 @@ public class GirlController {
 		return JsonResultUtil.ok(list);
 	}
 	
+	/**
+	 * 分页查询女生
+	 * 	@PathVariable("page") 是从访问地址接收参数的方式，这样地址就可以直接写	/queryGirlListPaged/2 等等，不需要写参数名
+	 * 	如果按照以前的写法，则地址写	queryGirlListPaged?page=2	这里使用 @RequestParam("page") Integer page	接收参数
+	 * @return
+	 */
+	@RequestMapping(value = "/queryGirlListPaged")
+	public JsonResultUtil queryGirlListPaged(@RequestParam(value = "page", required = false, defaultValue = "1") Integer page) throws Exception{
+		
+		int pageSize = 5;
+		
+		Girl girl = new Girl();
+		//girl.setAge(10);
+		
+		/**
+		 * girlList	里面包含总条数total,当前页数，每页记录数，总页数，参数名list中就是此次的数据
+		 */
+		PageInfo<Girl> girlList = girlService.queryGirlListPaged(girl, page, pageSize);
+		
+		return JsonResultUtil.ok(girlList);
+	}
 	
 }

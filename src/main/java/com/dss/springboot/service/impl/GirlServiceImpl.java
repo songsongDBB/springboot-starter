@@ -8,6 +8,8 @@ import org.springframework.stereotype.Service;
 import com.dss.springboot.mapper.GirlMapper;
 import com.dss.springboot.pojo.Girl;
 import com.dss.springboot.service.GirlService;
+import com.github.pagehelper.PageHelper;
+import com.github.pagehelper.PageInfo;
 
 @Service("girlService")
 public class GirlServiceImpl implements GirlService {
@@ -29,7 +31,7 @@ public class GirlServiceImpl implements GirlService {
 	 * 修改一个girl
 	 */
 	@Override
-	public void updateGirl(Girl girl) {
+	public void updateGirl(Girl girl) throws Exception {
 		
 		girlMapper.updateGirl(girl);
 		
@@ -39,7 +41,7 @@ public class GirlServiceImpl implements GirlService {
 	 * 通过id查询一个girl
 	 */
 	@Override
-	public Girl selectGirlById(Girl girl) {
+	public Girl selectGirlById(Girl girl) throws Exception {
 		
 		return girlMapper.selectGirlById(girl);
 	}
@@ -48,7 +50,7 @@ public class GirlServiceImpl implements GirlService {
 	 * 查询所有的girl
 	 */
 	@Override
-	public List<Girl> selectAllGilr() {
+	public List<Girl> selectAllGilr() throws Exception {
 
 		return girlMapper.selectAllGilr();
 	}
@@ -57,9 +59,24 @@ public class GirlServiceImpl implements GirlService {
 	 * 通过id删除一个girl
 	 */
 	@Override
-	public void deleteGirlById(Girl girl) {
+	public void deleteGirlById(Girl girl) throws Exception {
 
 		girlMapper.deleteGirlById(girl);
+	}
+
+	/**
+	 * 分页查询女生
+	 */
+	@Override
+	public PageInfo<Girl> queryGirlListPaged(Girl girl, Integer page, int pageSize) throws Exception {
+		
+		PageHelper.startPage(page, pageSize);			//开始分页
+		
+		List<Girl> girlList = girlMapper.selectAllGilr();
+		
+		PageInfo<Girl> pageInfo = new PageInfo<>(girlList);
+		
+		return pageInfo;
 	}
 
 }
