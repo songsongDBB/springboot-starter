@@ -1,7 +1,7 @@
 # springboot-starter
 spring开发常用技术整合项目
 
-这个项目包括：
+这个项目包括：<br/>
 	1、springboot项目的搭建
 	2、springboot封装json对象返回
 	3、使用devtools对springboot项目进行热部署
