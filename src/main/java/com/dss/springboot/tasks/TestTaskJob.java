@@ -16,7 +16,7 @@ public class TestTaskJob {
 	 * 测试的定时任务
 	 */
 	//@Scheduled(fixedRate = 3000)			//表示每个3秒执行一次
-	@Scheduled(cron = "*/3 * * * * ?")
+	//@Scheduled(cron = "*/3 * * * * ?")
 	public void testJob() {
 		
 		System.out.println( "testJob ==== 当前时间是：   " + sdf.format(new Date()) );
@@ -26,7 +26,7 @@ public class TestTaskJob {
 	/**
 	 * 测试的定时任务
 	 */
-	@Scheduled(fixedRate = 3000)			//表示每个3秒执行一次
+	//@Scheduled(fixedRate = 3000)			//表示每个3秒执行一次
 	public void testJob1() {
 		
 		System.out.println( "testJob1 === 当前时间是：   " + sdf.format(new Date()) );
