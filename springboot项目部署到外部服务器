@@ -1,0 +1,9 @@
+springboot项目部署到外部服务器上步骤：
+	1、将pom.xml中的	<packaging>jar</packaging>	改成	<packaging>war</packaging>
+	2、去除springboot内置的tomcat，加上	<dependency>
+										<groupId>org.springframework.boot</groupId>
+										<artifactId>spring-boot-starter-tomcat</artifactId>
+										<scope>provided</scope>
+									</dependency>
+	3、将项目通过mvn指令打成war包，部署到tomcat中，访问时：	localhost:8080/war包的名字/../..
+	4、注意，要部署到tomcat8上面，因为springboot内置的tomcat8，低版本的不行
